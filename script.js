@@ -1,18 +1,14 @@
 let interviewList = [];
 let rejectedList = [];
 let currentFilter = 'filter-all';
-
 let emptyState = document.getElementById('emptyState');
-
 let totalApplications = document.getElementById("totalApplications");
 let interviewTotal = document.getElementById("interviewTotal");
 let rejectedTotal = document.getElementById("rejectedTotal");
 let jobCounter = document.getElementById('jobCounter');
-
 const filterAllBtn = document.getElementById('filter-all');
 const filterInterviewBtn = document.getElementById('filter-interview');
 const filterRejectedBtn = document.getElementById('filter-rejected');
-
 const jobList = document.getElementById('jobList');
 const mainArea = document.querySelector('main');
 const filteredList = document.getElementById('filteredList');
@@ -33,29 +29,21 @@ function updateCounterText() {
         jobCounter.innerText = `${rejectedList.length} of ${jobList.children.length}`;
     }
 }
-
 updateCounts();
 updateCounterText();
-
 function toggleStyle(id) {
-
     filterAllBtn.classList.remove('bg-blue-700', 'text-white');
     filterInterviewBtn.classList.remove('bg-blue-700', 'text-white');
     filterRejectedBtn.classList.remove('bg-blue-700', 'text-white');
-
     filterAllBtn.classList.add('bg-white', 'text-gray-600');
     filterInterviewBtn.classList.add('bg-white', 'text-gray-600');
     filterRejectedBtn.classList.add('bg-white', 'text-gray-600');
-
     const selected = document.getElementById(id);
     currentFilter = id;
-
     selected.classList.remove('bg-white', 'text-gray-600');
     selected.classList.add('bg-blue-700', 'text-white');
-
     emptyState.classList.add('hidden');
     filteredList.innerHTML = '';
-
     if (id === 'filter-interview') {
         jobList.classList.add('hidden');
         filteredList.classList.remove('hidden');
@@ -68,7 +56,8 @@ function toggleStyle(id) {
         }
     }
 
-    else if (id === 'filter-rejected') {
+    else if (id === 'filter-rejected') 
+        {
         jobList.classList.add('hidden');
         filteredList.classList.remove('hidden');
         jobCounter.innerText = `${rejectedList.length} of ${jobList.children.length}`;
@@ -80,7 +69,8 @@ function toggleStyle(id) {
         }
     }
 
-    else {
+    else 
+        {
         jobList.classList.remove('hidden');
         filteredList.classList.add('hidden');
         jobCounter.innerText = jobList.children.length;
@@ -88,9 +78,11 @@ function toggleStyle(id) {
     }
 }
 
-mainArea.addEventListener('click', function (event) {
+mainArea.addEventListener('click', function (event) 
+{
 
-    if (event.target.classList.contains('btn-interview')) {
+    if (event.target.classList.contains('btn-interview')) 
+        {
 
         const parent = event.target.closest('.job-card');
         const company = parent.querySelector('.company-title').innerText;
@@ -104,7 +96,8 @@ mainArea.addEventListener('click', function (event) {
 
         const data = { company, role, meta, status: 'INTERVIEW', description };
 
-        if (!interviewList.find(item => item.company === company)) {
+        if (!interviewList.find(item => item.company === company)) 
+            {
             interviewList.push(data);
         }
 
@@ -113,7 +106,8 @@ mainArea.addEventListener('click', function (event) {
         updateCounts();
         updateCounterText();
 
-        if (currentFilter === 'filter-rejected') {
+        if (currentFilter === 'filter-rejected') 
+            {
             if (rejectedList.length === 0) {
                 filteredList.innerHTML = '';
                 emptyState.classList.remove('hidden');
